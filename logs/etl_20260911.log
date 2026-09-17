@@ -1,0 +1,350 @@
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Starting extraction from: C:\Users\user\OneDrive\Bureau\dataeng-project\data\raw\retail_sales.csv
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Scanning CSV to detect section boundaries...
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Total lines in CSV: 37433
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Part 3 header found at line 19676: 19675,CUSTOMER,DATE,Months,Style,SKU,PCS,RATE,GROSS AMT,Stock...
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Part 1 ends at line 18635
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Part 2 (product summary) starts at line 18636
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Section boundaries: {'part1_end': 18635, 'part2_start': 18636, 'part2_end': 19675, 'part3_header': 19676, 'part3_start': 19677, 'total_lines': 37433}
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Extracting Part 1: Sales Transactions...
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Part 1 extracted: 18635 rows × 10 columns
+2026-09-11 13:50:19 | DEBUG    | retail_etl.extract | Part 1 columns: ['index', 'DATE', 'Months', 'CUSTOMER', 'Style', 'SKU', 'Size', 'PCS', 'RATE', 'GROSS AMT']
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Scanning CSV to detect section boundaries...
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Total lines in CSV: 37433
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Part 3 header found at line 19676: 19675,CUSTOMER,DATE,Months,Style,SKU,PCS,RATE,GROSS AMT,Stock...
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Part 1 ends at line 18635
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Part 2 (product summary) starts at line 18636
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Section boundaries: {'part1_end': 18635, 'part2_start': 18636, 'part2_end': 19675, 'part3_header': 19676, 'part3_start': 19677, 'total_lines': 37433}
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Extracting Part 3: Stock/Inventory Report...
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Part 3 raw columns: ['19675', 'CUSTOMER', 'DATE', 'Months', 'Style', 'SKU', 'PCS', 'RATE', 'GROSS AMT', 'Stock']
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Part 3 extracted: 17756 rows × 10 columns
+2026-09-11 13:50:19 | INFO     | retail_etl.extract | Extraction complete. Sales: 18635 rows, Stock: 17756 rows
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Starting extraction from: C:\Users\user\OneDrive\Bureau\dataeng-project\data\raw\retail_sales.csv
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Scanning CSV to detect section boundaries...
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Total lines in CSV: 37433
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Part 3 header found at line 19676: 19675,CUSTOMER,DATE,Months,Style,SKU,PCS,RATE,GROSS AMT,Stock...
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Part 1 ends at line 18635
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Part 2 (product summary) starts at line 18636
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Section boundaries: {'part1_end': 18635, 'part2_start': 18636, 'part2_end': 19675, 'part3_header': 19676, 'part3_start': 19677, 'total_lines': 37433}
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Extracting Part 1: Sales Transactions...
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Part 1 extracted: 18635 rows × 10 columns
+2026-09-11 13:50:31 | DEBUG    | retail_etl.extract | Part 1 columns: ['index', 'DATE', 'Months', 'CUSTOMER', 'Style', 'SKU', 'Size', 'PCS', 'RATE', 'GROSS AMT']
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Scanning CSV to detect section boundaries...
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Total lines in CSV: 37433
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Part 3 header found at line 19676: 19675,CUSTOMER,DATE,Months,Style,SKU,PCS,RATE,GROSS AMT,Stock...
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Part 1 ends at line 18635
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Part 2 (product summary) starts at line 18636
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Section boundaries: {'part1_end': 18635, 'part2_start': 18636, 'part2_end': 19675, 'part3_header': 19676, 'part3_start': 19677, 'total_lines': 37433}
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Extracting Part 3: Stock/Inventory Report...
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Part 3 raw columns: ['19675', 'CUSTOMER', 'DATE', 'Months', 'Style', 'SKU', 'PCS', 'RATE', 'GROSS AMT', 'Stock']
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Part 3 extracted: 17756 rows × 10 columns
+2026-09-11 13:50:31 | INFO     | retail_etl.extract | Extraction complete. Sales: 18635 rows, Stock: 17756 rows
+2026-09-11 13:50:31 | INFO     | retail_etl.transform | Starting data transformation...
+2026-09-11 13:50:31 | INFO     | retail_etl.transform | Transforming sales data: 18635 rows
+2026-09-11 13:50:31 | INFO     | retail_etl.transform |   Trimming whitespace...
+2026-09-11 13:50:31 | INFO     | retail_etl.transform |   Parsing dates (MM-DD-YY → datetime)...
+2026-09-11 13:50:31 | INFO     | retail_etl.transform |   Normalizing sizes...
+2026-09-11 13:50:31 | INFO     | retail_etl.transform |   Casting numeric columns...
+2026-09-11 13:50:31 | INFO     | retail_etl.transform |   Filling missing SKUs...
+2026-09-11 13:50:31 | INFO     | retail_etl.transform |   Filling 1417 missing SKU values from Style+Size
+2026-09-11 13:50:31 | INFO     | retail_etl.transform |   Removed 6322 duplicate rows (by date+customer+sku+size)
+2026-09-11 13:50:31 | INFO     | retail_etl.transform |   Generating transaction IDs...
+2026-09-11 13:50:32 | WARNING  | retail_etl.transform |   Amount validation: 4753 rows (38.6%) have gross_amount ≠ quantity × unit_price (tolerance: ±$1.00)
+2026-09-11 13:50:32 | INFO     | retail_etl.transform | Sales transform complete: 12313 clean rows
+2026-09-11 13:50:32 | INFO     | retail_etl.transform | Transforming stock data: 17756 rows
+2026-09-11 13:50:32 | INFO     | retail_etl.transform |   Trimming whitespace...
+2026-09-11 13:50:32 | INFO     | retail_etl.transform |   Parsing dates (MM-DD-YY → datetime)...
+2026-09-11 13:50:32 | INFO     | retail_etl.transform |   Casting numeric columns...
+2026-09-11 13:50:32 | INFO     | retail_etl.transform |   Removed 6592 duplicate rows (by date+customer+sku)
+2026-09-11 13:50:32 | WARNING  | retail_etl.transform |   Amount validation: 4752 rows (42.6%) have gross_amount ≠ quantity × unit_price (tolerance: ±$1.00)
+2026-09-11 13:50:32 | INFO     | retail_etl.transform | Stock transform complete: 11164 clean rows
+2026-09-11 13:50:32 | INFO     | retail_etl.transform | Transformation complete. Sales: 12313 rows, Stock: 11164 rows
+2026-09-11 13:52:33 | INFO     | retail_etl | ============================================================
+2026-09-11 13:52:33 | INFO     | retail_etl | RETAIL SALES ETL PIPELINE — FULL LOAD
+2026-09-11 13:52:33 | INFO     | retail_etl | Run ID: run_20260911_135233_a3f94c
+2026-09-11 13:52:33 | INFO     | retail_etl | Started: 2026-09-11 13:52:33
+2026-09-11 13:52:33 | INFO     | retail_etl | ============================================================
+2026-09-11 13:52:33 | INFO     | retail_etl | 
+────────────────────────────────────────
+2026-09-11 13:52:33 | INFO     | retail_etl | STEP 1/3: EXTRACT
+2026-09-11 13:52:33 | INFO     | retail_etl | ────────────────────────────────────────
+2026-09-11 13:52:33 | ERROR    | retail_etl | PIPELINE FAILED: (psycopg2.OperationalError) 
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-09-11 13:52:33 | ERROR    | retail_etl | Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\impl.py", line 179, in _do_get
+    with util.safe_reraise():
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\user\OneDrive\Bureau\dataeng-project\scripts\run_etl.py", line 60, in run_pipeline
+    log_etl_event(engine, run_id, "extract", "started")
+  File "C:\Users\user\OneDrive\Bureau\dataeng-project\scripts\utils.py", line 146, in log_etl_event
+    with engine.connect() as conn:
+         ^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 3278, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 148, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2442, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\impl.py", line 179, in _do_get
+    with util.safe_reraise():
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) 
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2026-09-11 13:59:20 | INFO     | retail_etl | ============================================================
+2026-09-11 13:59:20 | INFO     | retail_etl | RETAIL SALES ETL PIPELINE — FULL LOAD
+2026-09-11 13:59:20 | INFO     | retail_etl | Run ID: run_20260911_135920_b127c0
+2026-09-11 13:59:20 | INFO     | retail_etl | Started: 2026-09-11 13:59:20
+2026-09-11 13:59:20 | INFO     | retail_etl | ============================================================
+2026-09-11 13:59:20 | INFO     | retail_etl | 
+────────────────────────────────────────
+2026-09-11 13:59:20 | INFO     | retail_etl | STEP 1/3: EXTRACT
+2026-09-11 13:59:20 | INFO     | retail_etl | ────────────────────────────────────────
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Starting extraction from: C:\Users\user\OneDrive\Bureau\dataeng-project\data\raw\retail_sales.csv
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Starting extraction from: C:\Users\user\OneDrive\Bureau\dataeng-project\data\raw\retail_sales.csv
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Scanning CSV to detect section boundaries...
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Scanning CSV to detect section boundaries...
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Total lines in CSV: 37433
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Total lines in CSV: 37433
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 3 header found at line 19676: 19675,CUSTOMER,DATE,Months,Style,SKU,PCS,RATE,GROSS AMT,Stock...
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 3 header found at line 19676: 19675,CUSTOMER,DATE,Months,Style,SKU,PCS,RATE,GROSS AMT,Stock...
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 1 ends at line 18635
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 1 ends at line 18635
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 2 (product summary) starts at line 18636
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 2 (product summary) starts at line 18636
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Section boundaries: {'part1_end': 18635, 'part2_start': 18636, 'part2_end': 19675, 'part3_header': 19676, 'part3_start': 19677, 'total_lines': 37433}
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Section boundaries: {'part1_end': 18635, 'part2_start': 18636, 'part2_end': 19675, 'part3_header': 19676, 'part3_start': 19677, 'total_lines': 37433}
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Extracting Part 1: Sales Transactions...
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Extracting Part 1: Sales Transactions...
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 1 extracted: 18635 rows × 10 columns
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 1 extracted: 18635 rows × 10 columns
+2026-09-11 13:59:20 | DEBUG    | retail_etl.extract | Part 1 columns: ['index', 'DATE', 'Months', 'CUSTOMER', 'Style', 'SKU', 'Size', 'PCS', 'RATE', 'GROSS AMT']
+2026-09-11 13:59:20 | DEBUG    | retail_etl.extract | Part 1 columns: ['index', 'DATE', 'Months', 'CUSTOMER', 'Style', 'SKU', 'Size', 'PCS', 'RATE', 'GROSS AMT']
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Scanning CSV to detect section boundaries...
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Scanning CSV to detect section boundaries...
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Total lines in CSV: 37433
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Total lines in CSV: 37433
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 3 header found at line 19676: 19675,CUSTOMER,DATE,Months,Style,SKU,PCS,RATE,GROSS AMT,Stock...
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 3 header found at line 19676: 19675,CUSTOMER,DATE,Months,Style,SKU,PCS,RATE,GROSS AMT,Stock...
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 1 ends at line 18635
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 1 ends at line 18635
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 2 (product summary) starts at line 18636
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Part 2 (product summary) starts at line 18636
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Section boundaries: {'part1_end': 18635, 'part2_start': 18636, 'part2_end': 19675, 'part3_header': 19676, 'part3_start': 19677, 'total_lines': 37433}
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Section boundaries: {'part1_end': 18635, 'part2_start': 18636, 'part2_end': 19675, 'part3_header': 19676, 'part3_start': 19677, 'total_lines': 37433}
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Extracting Part 3: Stock/Inventory Report...
+2026-09-11 13:59:20 | INFO     | retail_etl.extract | Extracting Part 3: Stock/Inventory Report...
+2026-09-11 13:59:21 | INFO     | retail_etl.extract | Part 3 raw columns: ['19675', 'CUSTOMER', 'DATE', 'Months', 'Style', 'SKU', 'PCS', 'RATE', 'GROSS AMT', 'Stock']
+2026-09-11 13:59:21 | INFO     | retail_etl.extract | Part 3 raw columns: ['19675', 'CUSTOMER', 'DATE', 'Months', 'Style', 'SKU', 'PCS', 'RATE', 'GROSS AMT', 'Stock']
+2026-09-11 13:59:21 | INFO     | retail_etl.extract | Part 3 extracted: 17756 rows × 10 columns
+2026-09-11 13:59:21 | INFO     | retail_etl.extract | Part 3 extracted: 17756 rows × 10 columns
+2026-09-11 13:59:21 | INFO     | retail_etl.extract | Extraction complete. Sales: 18635 rows, Stock: 17756 rows
+2026-09-11 13:59:21 | INFO     | retail_etl.extract | Extraction complete. Sales: 18635 rows, Stock: 17756 rows
+2026-09-11 13:59:21 | INFO     | retail_etl | 
+────────────────────────────────────────
+2026-09-11 13:59:21 | INFO     | retail_etl | STEP 2/3: TRANSFORM
+2026-09-11 13:59:21 | INFO     | retail_etl | ────────────────────────────────────────
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Starting data transformation...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Starting data transformation...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Transforming sales data: 18635 rows
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Transforming sales data: 18635 rows
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Trimming whitespace...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Trimming whitespace...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Parsing dates (MM-DD-YY → datetime)...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Parsing dates (MM-DD-YY → datetime)...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Normalizing sizes...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Normalizing sizes...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Casting numeric columns...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Casting numeric columns...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Filling missing SKUs...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Filling missing SKUs...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Filling 1417 missing SKU values from Style+Size
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Filling 1417 missing SKU values from Style+Size
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Removed 6322 duplicate rows (by date+customer+sku+size)
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Removed 6322 duplicate rows (by date+customer+sku+size)
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Generating transaction IDs...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Generating transaction IDs...
+2026-09-11 13:59:21 | WARNING  | retail_etl.transform |   Amount validation: 4753 rows (38.6%) have gross_amount ≠ quantity × unit_price (tolerance: ±$1.00)
+2026-09-11 13:59:21 | WARNING  | retail_etl.transform |   Amount validation: 4753 rows (38.6%) have gross_amount ≠ quantity × unit_price (tolerance: ±$1.00)
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Sales transform complete: 12313 clean rows
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Sales transform complete: 12313 clean rows
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Transforming stock data: 17756 rows
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Transforming stock data: 17756 rows
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Trimming whitespace...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Trimming whitespace...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Parsing dates (MM-DD-YY → datetime)...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Parsing dates (MM-DD-YY → datetime)...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Casting numeric columns...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Casting numeric columns...
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Removed 6592 duplicate rows (by date+customer+sku)
+2026-09-11 13:59:21 | INFO     | retail_etl.transform |   Removed 6592 duplicate rows (by date+customer+sku)
+2026-09-11 13:59:21 | WARNING  | retail_etl.transform |   Amount validation: 4752 rows (42.6%) have gross_amount ≠ quantity × unit_price (tolerance: ±$1.00)
+2026-09-11 13:59:21 | WARNING  | retail_etl.transform |   Amount validation: 4752 rows (42.6%) have gross_amount ≠ quantity × unit_price (tolerance: ±$1.00)
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Stock transform complete: 11164 clean rows
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Stock transform complete: 11164 clean rows
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Transformation complete. Sales: 12313 rows, Stock: 11164 rows
+2026-09-11 13:59:21 | INFO     | retail_etl.transform | Transformation complete. Sales: 12313 rows, Stock: 11164 rows
+2026-09-11 13:59:21 | INFO     | retail_etl | 
+────────────────────────────────────────
+2026-09-11 13:59:21 | INFO     | retail_etl | STEP 3/3: LOAD
+2026-09-11 13:59:21 | INFO     | retail_etl | ────────────────────────────────────────
+2026-09-11 13:59:21 | INFO     | retail_etl.load | Starting data loading...
+2026-09-11 13:59:21 | INFO     | retail_etl.load | Starting data loading...
+2026-09-11 13:59:21 | INFO     | retail_etl.load | Full load mode: truncating raw.sales_transactions...
+2026-09-11 13:59:21 | INFO     | retail_etl.load | Full load mode: truncating raw.sales_transactions...
+2026-09-11 13:59:21 | INFO     | retail_etl.load | Loading 12313 rows into raw.sales_transactions...
+2026-09-11 13:59:21 | INFO     | retail_etl.load | Loading 12313 rows into raw.sales_transactions...
+2026-09-11 13:59:27 | INFO     | retail_etl.load | Successfully loaded 12313 rows into raw.sales_transactions
+2026-09-11 13:59:27 | INFO     | retail_etl.load | Successfully loaded 12313 rows into raw.sales_transactions
+2026-09-11 13:59:27 | INFO     | retail_etl.load | Full load mode: truncating raw.stock_inventory...
+2026-09-11 13:59:27 | INFO     | retail_etl.load | Full load mode: truncating raw.stock_inventory...
+2026-09-11 13:59:28 | INFO     | retail_etl.load | Loading 11164 rows into raw.stock_inventory...
+2026-09-11 13:59:28 | INFO     | retail_etl.load | Loading 11164 rows into raw.stock_inventory...
+2026-09-11 13:59:34 | INFO     | retail_etl.load | Successfully loaded 11164 rows into raw.stock_inventory
+2026-09-11 13:59:34 | INFO     | retail_etl.load | Successfully loaded 11164 rows into raw.stock_inventory
+2026-09-11 13:59:34 | INFO     | retail_etl.load | Loading complete. Sales: 12313 rows, Stock: 11164 rows
+2026-09-11 13:59:34 | INFO     | retail_etl.load | Loading complete. Sales: 12313 rows, Stock: 11164 rows
+2026-09-11 13:59:34 | INFO     | retail_etl | 
+────────────────────────────────────────
+2026-09-11 13:59:34 | INFO     | retail_etl | VERIFICATION
+2026-09-11 13:59:34 | INFO     | retail_etl | ────────────────────────────────────────
+2026-09-11 13:59:34 | INFO     | retail_etl.load | === Load Verification ===
+2026-09-11 13:59:34 | INFO     | retail_etl.load | === Load Verification ===
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   sales_count: 12313
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   sales_count: 12313
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   stock_count: 11164
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   stock_count: 11164
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   sales_date_range: ('2021-06-05', '2022-05-11')
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   sales_date_range: ('2021-06-05', '2022-05-11')
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   stock_date_range: ('2021-06-05', '2022-03-31')
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   stock_date_range: ('2021-06-05', '2022-03-31')
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   unique_customers: 157
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   unique_customers: 157
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   unique_skus: 5420
+2026-09-11 13:59:34 | INFO     | retail_etl.load |   unique_skus: 5420
+2026-09-11 13:59:34 | INFO     | retail_etl | 
+============================================================
+2026-09-11 13:59:34 | INFO     | retail_etl | PIPELINE COMPLETED SUCCESSFULLY
+2026-09-11 13:59:34 | INFO     | retail_etl | Duration: 14.1s
+2026-09-11 13:59:34 | INFO     | retail_etl | Sales loaded:  12,313 rows
+2026-09-11 13:59:34 | INFO     | retail_etl | Stock loaded:  11,164 rows
+2026-09-11 13:59:34 | INFO     | retail_etl | ============================================================
+2026-09-11 14:28:12 | INFO     | retail_etl.export | ============================================================
+2026-09-11 14:28:12 | INFO     | retail_etl.export | POWER BI DATA EXPORT STARTING
+2026-09-11 14:28:12 | INFO     | retail_etl.export | Target Directory: C:\Users\user\OneDrive\Bureau\dataeng-project\powerbi\exports
+2026-09-11 14:28:12 | INFO     | retail_etl.export | ============================================================
+2026-09-11 14:28:12 | INFO     | retail_etl.export | Exporting warehouse.monthly_revenue...
+2026-09-11 14:28:12 | INFO     | retail_etl.export | ✓ Saved 12 rows to monthly_revenue.csv
+2026-09-11 14:28:12 | INFO     | retail_etl.export | Exporting warehouse.top_products...
+2026-09-11 14:28:12 | INFO     | retail_etl.export | ✓ Saved 5,401 rows to top_products.csv
+2026-09-11 14:28:12 | INFO     | retail_etl.export | Exporting warehouse.customer_segments...
+2026-09-11 14:28:13 | INFO     | retail_etl.export | ✓ Saved 149 rows to customer_segments.csv
+2026-09-11 14:28:13 | INFO     | retail_etl.export | Exporting warehouse.size_distribution...
+2026-09-11 14:28:13 | INFO     | retail_etl.export | ✓ Saved 12 rows to size_distribution.csv
+2026-09-11 14:28:13 | INFO     | retail_etl.export | Exporting warehouse.daily_sales_trend...
+2026-09-11 14:28:13 | INFO     | retail_etl.export | ✓ Saved 334 rows to daily_sales_trend.csv
+2026-09-11 14:28:13 | INFO     | retail_etl.export | Exporting warehouse.dim_date...
+2026-09-11 14:28:13 | INFO     | retail_etl.export | ✓ Saved 426 rows to dim_date.csv
+2026-09-11 14:28:13 | INFO     | retail_etl.export | Exporting warehouse.dim_customer...
+2026-09-11 14:28:13 | INFO     | retail_etl.export | ✓ Saved 149 rows to dim_customer.csv
+2026-09-11 14:28:13 | INFO     | retail_etl.export | Exporting warehouse.dim_product...
+2026-09-11 14:28:13 | INFO     | retail_etl.export | ✓ Saved 5,401 rows to dim_product.csv
+2026-09-11 14:28:13 | INFO     | retail_etl.export | Exporting warehouse.fact_sales...
+2026-09-11 14:28:13 | INFO     | retail_etl.export | ✓ Saved 12,320 rows to fact_sales.csv
+2026-09-11 14:28:13 | INFO     | retail_etl.export | ============================================================
+2026-09-11 14:28:13 | INFO     | retail_etl.export | POWER BI DATA EXPORT COMPLETED
+2026-09-11 14:28:13 | INFO     | retail_etl.export |   ✓ monthly_revenue           : 12 rows
+2026-09-11 14:28:13 | INFO     | retail_etl.export |   ✓ top_products              : 5,401 rows
+2026-09-11 14:28:13 | INFO     | retail_etl.export |   ✓ customer_segments         : 149 rows
+2026-09-11 14:28:13 | INFO     | retail_etl.export |   ✓ size_distribution         : 12 rows
+2026-09-11 14:28:13 | INFO     | retail_etl.export |   ✓ daily_sales_trend         : 334 rows
+2026-09-11 14:28:13 | INFO     | retail_etl.export |   ✓ dim_date                  : 426 rows
+2026-09-11 14:28:13 | INFO     | retail_etl.export |   ✓ dim_customer              : 149 rows
+2026-09-11 14:28:13 | INFO     | retail_etl.export |   ✓ dim_product               : 5,401 rows
+2026-09-11 14:28:13 | INFO     | retail_etl.export |   ✓ fact_sales                : 12,320 rows
+2026-09-11 14:28:13 | INFO     | retail_etl.export | ============================================================

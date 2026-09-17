@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retail Analytics — Power BI Executive Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-base: #0B0F19;
+            --bg-card: rgba(18, 24, 39, 0.75);
+            --bg-card-hover: rgba(30, 41, 59, 0.85);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --accent-primary: #6366F1;
+            --accent-secondary: #38BDF8;
+            --accent-success: #10B981;
+            --accent-warning: #F59E0B;
+            --accent-danger: #EF4444;
+            --accent-purple: #A855F7;
+            --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --glass-blur: blur(16px);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.12) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .dashboard-container {
+            max-width: 1540px;
+            margin: 0 auto;
+        }
+
+        /* Top Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-title h1 {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF 30%, #94A3B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .header-title p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .badge-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34D399;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-pulse {
+            width: 8px;
+            height: 8px;
+            background-color: #10B981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10B981;
+        }
+
+        /* KPI Cards Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-card);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .kpi-title {
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kpi-value {
+            font-size: 30px;
+            font-weight: 800;
+            margin: 10px 0 6px 0;
+            color: #FFF;
+            letter-spacing: -0.5px;
+        }
+
+        .kpi-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .text-green { color: var(--accent-success); font-weight: 600; }
+        .text-blue { color: var(--accent-secondary); font-weight: 600; }
+
+        /* Main Visuals Grid */
+        .charts-grid-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .charts-grid-secondary {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card-header h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #FFF;
+        }
+
+        .card-tag {
+            font-size: 11px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 280px;
+            width: 100%;
+        }
+
+        /* Top Products Table */
+        .table-wrapper {
+            overflow-x: auto;
+            max-height: 320px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            backdrop-filter: var(--glass-blur);
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .pill {
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .pill-instock { background: rgba(16, 185, 129, 0.15); color: #34D399; }
+        .pill-lowstock { background: rgba(245, 158, 11, 0.15); color: #FBBF24; }
+        .pill-outstock { background: rgba(239, 68, 68, 0.15); color: #F87171; }
+        .pill-tier-platinum { background: rgba(168, 85, 247, 0.15); color: #C084FC; }
+        .pill-tier-gold { background: rgba(245, 158, 11, 0.15); color: #FBBF24; }
+        .pill-tier-silver { background: rgba(148, 163, 184, 0.15); color: #CBD5E1; }
+        .pill-tier-bronze { background: rgba(217, 119, 6, 0.15); color: #F59E0B; }
+
+        @media (max-width: 1024px) {
+            .charts-grid-main, .charts-grid-secondary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header>
+            <div class="header-title">
+                <h1>Retail Sales & Inventory Analytics</h1>
+                <p>Data Warehouse: PostgreSQL 15 &bull; Star Schema Marts &bull; dbt Verified &bull; Airflow Orchestrated</p>
+            </div>
+            <div class="badge-live">
+                <div class="badge-pulse"></div>
+                PostgreSQL DW Live
+            </div>
+        </header>
+
+        <!-- KPI Grid -->
+        <div class="kpi-grid">
+            <div class="card">
+                <div class="kpi-title">
+                    <span>Total Revenue</span>
+                    <span>💰</span>
+                </div>
+                <div class="kpi-value">$10,823,808</div>
+                <div class="kpi-subtitle"><span class="text-green">12,320</span> line items processed</div>
+            </div>
+
+            <div class="card">
+                <div class="kpi-title">
+                    <span>Units Sold</span>
+                    <span>📦</span>
+                </div>
+                <div class="kpi-value">16,283</div>
+                <div class="kpi-subtitle"><span class="text-blue">5,401</span> unique SKUs sold</div>
+            </div>
+
+            <div class="card">
+                <div class="kpi-title">
+                    <span>Avg Order Value</span>
+                    <span>📊</span>
+                </div>
+                <div class="kpi-value">$878.56</div>
+                <div class="kpi-subtitle">Across 12 months historical data</div>
+            </div>
+
+            <div class="card">
+                <div class="kpi-title">
+                    <span>Active Customers</span>
+                    <span>👥</span>
+                </div>
+                <div class="kpi-value">149</div>
+                <div class="kpi-subtitle"><span class="text-green">100%</span> mapped in RFM tiers</div>
+            </div>
+        </div>
+
+        <!-- Main Charts Section -->
+        <div class="charts-grid-main">
+            <!-- Monthly Revenue & MoM Growth -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Monthly Revenue & MoM Growth Trend</h2>
+                    <span class="card-tag">warehouse.monthly_revenue</span>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="monthlyChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Customer RFM Segmentation -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Customer RFM Segments</h2>
+                    <span class="card-tag">warehouse.customer_segments</span>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="customerTierChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secondary Charts Section -->
+        <div class="charts-grid-secondary">
+            <!-- Apparel Size Distribution -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Sales by Apparel Size</h2>
+                    <span class="card-tag">warehouse.size_distribution</span>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="sizeChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Daily Moving Average Trend -->
+            <div class="card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <h2>Top 8 High-Revenue SKUs & Live Stock Status</h2>
+                    <span class="card-tag">warehouse.top_products</span>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>SKU</th>
+                                <th>Style</th>
+                                <th>Units Sold</th>
+                                <th>Total Revenue</th>
+                                <th>Avg Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>#1</strong></td>
+                                <td><code>JNE3797-KR-XXL</code></td>
+                                <td>JNE3797</td>
+                                <td>77</td>
+                                <td><strong>$60,250.00</strong></td>
+                                <td>$782.47</td>
+                                <td><span class="pill pill-instock">In Stock (120)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>#2</strong></td>
+                                <td><code>JNE3797-KR-XL</code></td>
+                                <td>JNE3797</td>
+                                <td>72</td>
+                                <td><strong>$56,410.00</strong></td>
+                                <td>$783.47</td>
+                                <td><span class="pill pill-instock">In Stock (98)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>#3</strong></td>
+                                <td><code>JNE3797-KR-L</code></td>
+                                <td>JNE3797</td>
+                                <td>68</td>
+                                <td><strong>$53,200.00</strong></td>
+                                <td>$782.35</td>
+                                <td><span class="pill pill-instock">In Stock (84)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>#4</strong></td>
+                                <td><code>J0014-SET-XL</code></td>
+                                <td>J0014</td>
+                                <td>38</td>
+                                <td><strong>$49,820.00</strong></td>
+                                <td>$1,311.05</td>
+                                <td><span class="pill pill-lowstock">Low Stock (3)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>#5</strong></td>
+                                <td><code>J0014-SET-L</code></td>
+                                <td>J0014</td>
+                                <td>36</td>
+                                <td><strong>$47,200.00</strong></td>
+                                <td>$1,311.11</td>
+                                <td><span class="pill pill-instock">In Stock (15)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>#6</strong></td>
+                                <td><code>JNE3797-KR-M</code></td>
+                                <td>JNE3797</td>
+                                <td>59</td>
+                                <td><strong>$46,180.00</strong></td>
+                                <td>$782.71</td>
+                                <td><span class="pill pill-instock">In Stock (72)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>#7</strong></td>
+                                <td><code>SET290-KR-NP-XL</code></td>
+                                <td>SET290</td>
+                                <td>44</td>
+                                <td><strong>$43,120.00</strong></td>
+                                <td>$980.00</td>
+                                <td><span class="pill pill-outstock">Out of Stock (0)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>#8</strong></td>
+                                <td><code>SET290-KR-NP-L</code></td>
+                                <td>SET290</td>
+                                <td>41</td>
+                                <td><strong>$40,180.00</strong></td>
+                                <td>$980.00</td>
+                                <td><span class="pill pill-lowstock">Low Stock (4)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Configuration Scripts -->
+    <script>
+        // Chart.js Theme Configuration
+        Chart.defaults.color = '#94A3B8';
+        Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+        Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(15, 23, 42, 0.95)';
+        Chart.defaults.plugins.tooltip.padding = 12;
+        Chart.defaults.plugins.tooltip.cornerRadius = 8;
+        Chart.defaults.plugins.tooltip.borderColor = 'rgba(255, 255, 255, 0.1)';
+        Chart.defaults.plugins.tooltip.borderWidth = 1;
+
+        // 1. Monthly Revenue Chart (Combo Bar + Line)
+        const ctxMonthly = document.getElementById('monthlyChart').getContext('2d');
+        new Chart(ctxMonthly, {
+            type: 'bar',
+            data: {
+                labels: ['Jun 21', 'Jul 21', 'Aug 21', 'Sep 21', 'Oct 21', 'Nov 21', 'Dec 21', 'Jan 22', 'Feb 22', 'Mar 22', 'Apr 22', 'May 22'],
+                datasets: [
+                    {
+                        type: 'line',
+                        label: 'MoM Growth %',
+                        data: [null, -14.6, 34.56, 13.05, 9.73, -51.36, -41.61, 14.17, 163.03, -11.55, 9.61, -80.87],
+                        borderColor: '#38BDF8',
+                        backgroundColor: '#38BDF8',
+                        borderWidth: 2,
+                        yAxisID: 'y1',
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    },
+                    {
+                        type: 'bar',
+                        label: 'Total Revenue ($)',
+                        data: [985441, 841563, 1132435, 1280221, 1404811, 683231, 398956, 455504, 1198122, 1059785, 1161581, 222158],
+                        backgroundColor: 'rgba(99, 102, 241, 0.75)',
+                        hoverBackgroundColor: 'rgba(99, 102, 241, 0.95)',
+                        borderRadius: 6,
+                        yAxisID: 'y'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { grid: { display: false } },
+                    y: {
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: {
+                            callback: function(value) { return '$' + (value / 1000).toFixed(0) + 'k'; }
+                        }
+                    },
+                    y1: {
+                        position: 'right',
+                        grid: { display: false },
+                        ticks: {
+                            callback: function(value) { return value + '%'; }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 2. Customer Tier Donut Chart
+        const ctxCustomer = document.getElementById('customerTierChart').getContext('2d');
+        new Chart(ctxCustomer, {
+            type: 'doughnut',
+            data: {
+                labels: ['Platinum (>$100k)', 'Gold ($50k-$100k)', 'Silver ($10k-$50k)', 'Bronze (<$10k)'],
+                datasets: [{
+                    data: [32, 28, 48, 41],
+                    backgroundColor: [
+                        '#A855F7',
+                        '#F59E0B',
+                        '#38BDF8',
+                        '#64748B'
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { boxWidth: 12, padding: 14 }
+                    }
+                },
+                cutout: '70%'
+            }
+        });
+
+        // 3. Size Distribution Horizontal Bar Chart
+        const ctxSize = document.getElementById('sizeChart').getContext('2d');
+        new Chart(ctxSize, {
+            type: 'bar',
+            data: {
+                labels: ['L', 'M', 'XL', 'S', 'XXL', 'XXXL', 'XS', 'FREE'],
+                datasets: [{
+                    label: 'Revenue Contribution (%)',
+                    data: [20.43, 19.32, 17.44, 13.64, 13.00, 8.66, 4.37, 1.52],
+                    backgroundColor: [
+                        '#6366F1', '#4F46E5', '#4338CA', '#3730A3',
+                        '#38BDF8', '#0EA5E9', '#0284C7', '#0369A1'
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: { callback: function(v) { return v + '%'; } }
+                    },
+                    y: { grid: { display: false } }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>

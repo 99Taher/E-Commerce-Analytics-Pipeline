@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: monthly_revenue
+    description: "Monthly aggregation with Month-over-Month (MoM) revenue growth metrics"
+    columns:
+      - name: year_month
+        tests: [unique, not_null]
+      - name: total_revenue
+        tests: [not_null]
+
+  - name: top_products
+    description: "Ranking of SKUs by total revenue and units sold"
+    columns:
+      - name: product_key
+        tests: [unique, not_null]
+      - name: revenue_rank
+        tests: [not_null]
+
+  - name: customer_segments
+    description: "Customer breakdown by RFM metrics and tier"
+    columns:
+      - name: customer_key
+        tests: [unique, not_null]
+      - name: customer_name
+        tests: [unique, not_null]
+
+  - name: size_distribution
+    description: "Sales distribution across clothing sizes"
+    columns:
+      - name: size
+        tests: [unique, not_null]
+
+  - name: daily_sales_trend
+    description: "Daily revenue with 7-day moving averages"
+    columns:
+      - name: sale_date
+        tests: [unique, not_null]

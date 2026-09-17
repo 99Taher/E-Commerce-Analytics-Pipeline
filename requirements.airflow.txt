@@ -1,0 +1,13 @@
+# ===========================================
+# Airflow Container — ETL Script Dependencies
+# ===========================================
+# NOTE: SQLAlchemy is intentionally OMITTED here.
+# Airflow 2.9.x bundles sqlalchemy~=1.4 internally.
+# Installing sqlalchemy==2.0.* would break Airflow's ORM.
+#
+# These are only the extra packages needed by our ETL scripts
+# on top of what Airflow already provides.
+# ===========================================
+pandas==2.2.*
+psycopg2-binary==2.9.*
+python-dotenv==1.0.*

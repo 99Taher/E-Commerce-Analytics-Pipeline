@@ -1,0 +1,184 @@
+# =============================================================
+# Retail Sales Data Engineering Platform — Docker Compose
+# =============================================================
+# Services:
+#   - postgres:          PostgreSQL 15 (retail data + Airflow metadata)
+#   - airflow-init:      One-shot: initializes Airflow DB + admin user
+#   - airflow-webserver: Airflow web UI (port 8080)
+#   - airflow-scheduler: Airflow task scheduler (LocalExecutor)
+#   - pgadmin:           pgAdmin 4 web UI (port 5050)
+# =============================================================
+
+x-airflow-common: &airflow-common
+  build:
+    context: .
+    dockerfile: Dockerfile.airflow
+  environment:
+    # --- Airflow Core ---
+    AIRFLOW__CORE__EXECUTOR: ${AIRFLOW__CORE__EXECUTOR}
+    AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW__CORE__FERNET_KEY}
+    AIRFLOW__CORE__LOAD_EXAMPLES: ${AIRFLOW__CORE__LOAD_EXAMPLES}
+    AIRFLOW__CORE__DAGS_FOLDER: ${AIRFLOW__CORE__DAGS_FOLDER}
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: ${AIRFLOW__DATABASE__SQL_ALCHEMY_CONN}
+    AIRFLOW__WEBSERVER__SECRET_KEY: ${AIRFLOW__WEBSERVER__SECRET_KEY}
+    AIRFLOW__WEBSERVER__EXPOSE_CONFIG: ${AIRFLOW__WEBSERVER__EXPOSE_CONFIG}
+    # --- Retail DB connection (for ETL scripts) ---
+    DATABASE_URL: postgresql://retail_user:retail_pass_2024@postgres:5432/retail_dw
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: "5432"
+    POSTGRES_USER: ${POSTGRES_USER}
+    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    POSTGRES_DB: ${POSTGRES_DB}
+  volumes:
+    - ./airflow/dags:/opt/airflow/dags
+    - ./airflow/logs:/opt/airflow/logs
+    - ./airflow/plugins:/opt/airflow/plugins
+    - ./scripts:/opt/airflow/scripts
+    - ./data:/opt/airflow/data
+    - ./dbt_retail:/opt/airflow/dbt_retail
+  depends_on:
+    postgres:
+      condition: service_healthy
+  networks:
+    - retail_network
+
+services:
+  # -----------------------------------------
+  # PostgreSQL 15 — Main Database
+  # -----------------------------------------
+  postgres:
+    image: postgres:15-alpine
+    container_name: retail_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - retail_network
+
+  # -----------------------------------------
+  # Airflow — Database Initialization
+  # -----------------------------------------
+  airflow-init:
+    <<: *airflow-common
+    container_name: retail_airflow_init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        echo "Initializing Airflow database..."
+        airflow db init
+        echo "Creating admin user..."
+        airflow users create \
+          --username $${_AIRFLOW_WWW_USER_USERNAME:-admin} \
+          --password $${_AIRFLOW_WWW_USER_PASSWORD:-admin} \
+          --firstname Admin \
+          --lastname User \
+          --role Admin \
+          --email admin@retail.com || true
+        echo "Airflow initialization complete!"
+    environment:
+      AIRFLOW__CORE__EXECUTOR: ${AIRFLOW__CORE__EXECUTOR}
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW__CORE__FERNET_KEY}
+      AIRFLOW__CORE__LOAD_EXAMPLES: ${AIRFLOW__CORE__LOAD_EXAMPLES}
+      AIRFLOW__CORE__DAGS_FOLDER: ${AIRFLOW__CORE__DAGS_FOLDER}
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: ${AIRFLOW__DATABASE__SQL_ALCHEMY_CONN}
+      AIRFLOW__WEBSERVER__SECRET_KEY: ${AIRFLOW__WEBSERVER__SECRET_KEY}
+      AIRFLOW__WEBSERVER__EXPOSE_CONFIG: ${AIRFLOW__WEBSERVER__EXPOSE_CONFIG}
+      DATABASE_URL: postgresql://retail_user:retail_pass_2024@postgres:5432/retail_dw
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME}
+      _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD}
+    restart: "no"
+
+  # -----------------------------------------
+  # Airflow — Web Server (UI on port 8080)
+  # -----------------------------------------
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: retail_airflow_webserver
+    command: airflow webserver
+    ports:
+      - "${AIRFLOW_WEBSERVER_PORT:-8081}:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:8080/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+  # -----------------------------------------
+  # Airflow — Scheduler (LocalExecutor)
+  # -----------------------------------------
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: retail_airflow_scheduler
+    command: airflow scheduler
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "airflow jobs check --job-type SchedulerJob --hostname $(hostname) || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+  # -----------------------------------------
+  # pgAdmin 4 — Database Explorer (port 5050)
+  # -----------------------------------------
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: retail_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - retail_network
+
+# -----------------------------------------
+# Volumes
+# -----------------------------------------
+volumes:
+  postgres_data:
+    name: retail_postgres_data
+  pgadmin_data:
+    name: retail_pgadmin_data
+
+# -----------------------------------------
+# Networks
+# -----------------------------------------
+networks:
+  retail_network:
+    name: retail_network
+    driver: bridge

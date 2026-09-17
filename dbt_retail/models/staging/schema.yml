@@ -1,0 +1,85 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    description: "Landing zone for raw ingested data from CSV files"
+    tables:
+      - name: sales_transactions
+        description: "Raw sales transactions extracted from CSV Part 1 (18,635 source rows)"
+        columns:
+          - name: id
+            description: "Auto-incremented surrogate key"
+            tests: [unique, not_null]
+          - name: transaction_date
+            description: "Date of the transaction (parsed from MM-DD-YY)"
+          - name: customer_name
+            description: "Customer name"
+          - name: sku
+            description: "Stock Keeping Unit code"
+          - name: quantity
+            description: "Number of pieces sold"
+          - name: gross_amount
+            description: "Total gross amount for the line item"
+
+      - name: stock_inventory
+        description: "Raw stock/inventory data extracted from CSV Part 3 (17,756 source rows)"
+        columns:
+          - name: id
+            description: "Auto-incremented surrogate key"
+            tests: [unique, not_null]
+          - name: transaction_date
+            description: "Date of the stock record"
+          - name: stock
+            description: "Stock level at time of record"
+
+models:
+  - name: stg_sales
+    description: >
+      Cleaned and cast sales transactions. Filters null dates/customers and zero
+      quantities. Uppercases all string dimension columns.
+    columns:
+      - name: raw_id
+        description: "Source row ID from raw.sales_transactions"
+        tests: [unique, not_null]
+      - name: transaction_id
+        description: "Deterministic surrogate key (MD5 of business key)"
+        tests: [unique, not_null]
+      - name: transaction_date
+        description: "Sale date"
+        tests: [not_null]
+      - name: customer_name
+        description: "Uppercased customer name"
+        tests: [not_null]
+      - name: sku
+        description: "Uppercased SKU code"
+      - name: size
+        description: "Normalised size label (S, M, L, XL, XXL, FREE, etc.)"
+        tests:
+          - accepted_values:
+              values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL', '4XL', '5XL', 'FREE', 'PCS']
+              quote: true
+              severity: warn   # warn only — source data has some unexpected variants
+      - name: quantity
+        description: "Units sold (> 0)"
+        tests: [not_null]
+      - name: unit_price
+        description: "Price per unit"
+      - name: gross_amount
+        description: "Total gross amount for the line"
+
+  - name: stg_stock
+    description: >
+      Cleaned stock/inventory records. Filters null dates and customers.
+    columns:
+      - name: raw_id
+        description: "Source row ID from raw.stock_inventory"
+        tests: [unique, not_null]
+      - name: transaction_date
+        description: "Stock record date"
+        tests: [not_null]
+      - name: customer_name
+        description: "Uppercased customer name"
+        tests: [not_null]
+      - name: stock_level
+        description: "Inventory level at time of record"
