@@ -40,7 +40,12 @@ flowchart TD
     RawDB --> dbtStg --> StagingDB
     StagingDB --> dbtMarts --> WarehouseDB
     WarehouseDB --> dbtAnalytics --> AnalyticsDB
-    AnalyticsDB 
+    AnalyticsDB --> PBI
+    WarehouseDB --> PBI
+    DAG -.-> Ingestion
+    DAG -.-> Transformation
+    DAG -.-> Consumption
+```
 ---
 
 
